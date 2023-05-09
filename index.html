@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Assignment</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+
+<body style="margin-top: 93px;margin-left: 1px;padding: 64px;">
+    <form method="post" action="#"  enctype="multipart/form-data">
+        <input class="form-control" type="file"  name="file" id="file"/>
+        <input type="button" class="btn btn-primary" style="margin-top: 19px;" id="sumbit" value="sumbit">
+    </form>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+<div id="data">
+
+</div>
+<script>
+
+    $(document).ready(function(){
+  $("#sumbit").click(function(){
+    var fd = new FormData();
+                var files = $('#file').prop('files')[0]
+                fd.append('files', $('#file').val());
+                fd.append('file', files);
+$.ajax({
+    url:'./upload.php',
+    method:'post',
+    contentType: false,
+    processData: false,
+    data:fd,
+    success:function(e){
+        let result=JSON.parse(e)
+        console.log(result)
+    } 
+})
+  });
+});
+    </script>
+</html>
